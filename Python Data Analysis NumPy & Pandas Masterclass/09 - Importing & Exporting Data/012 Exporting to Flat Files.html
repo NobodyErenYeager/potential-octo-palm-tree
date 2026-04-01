@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assignment</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p, ul, ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .code-snippet {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .code-block {
+        background-color: #fff;
+        color: #b4690e;
+        font-size: 90%;
+      }
+      .black-block {
+        color: #000000;
+      }
+      .italic-text {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 id="coding-title"></h1>
+    <div>
+      <h2>Instructions</h2>
+      <div id="coding-instructions"></div>
+    </div>
+    <div>
+      <h2>Test(s)</h2>
+      <div id="coding-tests"></div>
+    </div>
+    <div>
+      <h2>Solution(s)</h2>
+      <div id="coding-solutions"></div>
+    </div>
+
+    <script>
+      const quizData = {"title": "012 Exporting to Flat Files", "hasInstructions": true, "hasTests": true, "hasSolutions": true, "instructions": "<ol><li><p><strong>Load the Dataset</strong>: Begin by loading the data from the <strong>cryptocurrency_BTC.csv</strong> file, ensuring the 'Date' column is parsed as a date.</p></li><li><p><strong>Save to CSV</strong>: Save the dataset to an CSV file named <strong>cleaned_data.csv</strong> and ensure that the index is not included.</p></li><li><p><strong>Verify the Data</strong>: Display the DataFrame to ensure the data has been correctly processed and saved.</p></li></ol>", "tests": [{"file_name": "evaluate.py", "content": "import unittest\r\n\r\nclass TestCryptoDataExport(unittest.TestCase):\r\n    def test_data_export_syntax(self):\r\n        # Sample code snippet provided to students\r\n        code = \"\"\"\r\nimport pandas as pd\r\n\r\n# Load the dataset\r\ncrypto = pd.read_csv(\"cryptocurrency_BTC.csv\", parse_dates=[\"Date\"])\r\n\r\n# Save the dataset to a tab-separated text file\r\ncrypto.to_csv(\"cleaned_data.csv\", sep=\"\\t\", index=False)\r\n\r\n# Display the DataFrame to verify the data\r\nprint(crypto)\r\n\"\"\"\r\n\r\n        # Check if the specific methods and parameters are correctly used in the student's code\r\n        self.assertIn('parse_dates=[\"Date\"]', code)\r\n        self.assertIn('to_csv(\"cleaned_data.csv\", sep=\"\\t\", index=False)', code)\r\n        self.assertIn('print(crypto)', code)\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"}], "solutions": [{"file_name": "exercise.py", "content": "import pandas as pd\r\n\r\n# Load the dataset\r\ncrypto = pd.read_csv(\"cryptocurrency_BTC.csv\", parse_dates=[\"Date\"])\r\n\r\n# Save the dataset to a tab-separated text file\r\ncrypto.to_csv(\"cleaned_data.csv\", sep=\"\\t\", index=False)\r\n\r\n# Display the DataFrame to verify the data\r\nprint(crypto)\r\n"}, {"file_name": "cryptocurrency_BTC.csv", "content": "Date,Ticker,Open,High,Low,Close,Adj Close,Volume\r\n01/06/2022,BTC,31793,31957,17709,19785,19785,923939211678\r\n01/07/2022,BTC,19820,24573,18967,23337,23337,927582363389\r\n01/08/2022,BTC,23337,25136,19601,20050,20050,894192654543\r\n01/09/2022,BTC,20050,22674,18290,19432,19432,1123272250385\r\n01/10/2022,BTC,19431,20988,18320,20496,20496,957903424925\r\n01/11/2022,BTC,20495,21447,15599,17169,17169,1224531549126\r\n01/12/2022,BTC,17168,18319,16398,16547,16547,541356716034\r\n01/01/2023,BTC,16548,23920,16521,23139,23139,690994018045\r\n01/02/2023,BTC,23138,25134,21460,23147,23147,723968574897\r\n01/03/2023,BTC,23151,29160,19628,28478,28478,883299703608\r\n01/04/2023,BTC,28473,31006,27071,29269,29269,511540319004\r\n01/05/2023,BTC,29227,29820,25878,27220,27220,443473015479\r\n01/06/2023,BTC,27218,31390,24797,30477,30477,481734214225\r\n01/07/2023,BTC,30472,31815,28934,29230,29230,382224489090\r\n01/08/2023,BTC,29231,30177,25409,25931,25931,437724169499\r\n01/09/2023,BTC,25934,27489,24930,26968,26968,337637313742\r\n01/10/2023,BTC,26967,35150,26558,34668,34668,476425634860\r\n01/11/2023,BTC,34657,38415,34133,37713,37713,570863267380\r\n01/12/2023,BTC,37718,44706,37629,42265,42265,721704910480\r\n01/01/2024,BTC,42280,48969,38522,42583,42583,825918941347\r\n01/02/2024,BTC,42570,63913,41879,61198,61198,830721862621\r\n01/03/2024,BTC,61168,73750,59324,71334,71334,1446417844950\r\n01/04/2024,BTC,71333,72715,59120,60637,60637,1016068331704\r\n01/05/2024,BTC,60609,65495,56555,62335,62335,207868919354\r\n"}]};
+
+      function renderCodeList(rootElement, codeList, className, titlePrefix) {
+        for (var i = 0; i < codeList.length; i++) {
+          var elem = codeList[i];
+          var jsElem = document.createElement("div");
+          jsElem.className = className;
+          var jsElemTitle = document.createElement("h3");
+          jsElemTitle.innerHTML = titlePrefix + " " + (i + 1);
+          var jsElemBody = document.createElement("code");
+          jsElemBody.className = "code-block black-block";
+          jsElemBody.innerHTML = "<pre>" + elem.content + "</pre>";
+          jsElem.appendChild(jsElemTitle);
+          jsElem.appendChild(jsElemBody);
+          rootElement.appendChild(jsElem);
+        }
+      }
+      
+      function main() {
+        // display the assignment
+        var codingTitle = document.getElementById("coding-title");
+        codingTitle.innerHTML = quizData.title;
+        
+        var codingInstructions = document.getElementById("coding-instructions");
+        if (quizData.hasInstructions) {
+          codingInstructions.innerHTML = quizData.instructions;
+        } else {
+          codingInstructions.innerHTML = "<span class=\"italic-text\">" + quizData.instructions
+            + "</span>";
+        }
+
+        // display the test(s)
+        var codingTests = document.getElementById("coding-tests");
+        if (!quizData.hasTests) {
+          codingTests.innerHTML = "<span class=\"italic-text\">" + quizData.tests + "</span>";
+        } else {
+          renderCodeList(codingTests, quizData.tests, "coding-test", "Test");
+        }
+        
+
+        // display the solution(s)
+        var codingSolutions = document.getElementById("coding-solutions");
+        if (!quizData.hasSolutions) {
+          codingSolutions.innerHTML = "<span class=\"italic-text\">" + quizData.solutions + "</span>";
+        } else {
+          renderCodeList(codingSolutions, quizData.solutions, "coding-solution", "Solution");
+        }
+      }
+    </script>
+  </body>
+</html>

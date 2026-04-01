@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      code {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .quiz-content {
+        padding: 2.4rem;
+        word-break: break-word;
+        max-width: 86rem;
+        margin: 0 auto;
+      }
+      .quiz-container {
+        margin: 0 auto;
+        max-width: 84rem;
+        padding: 0;
+      }
+      .question {
+        margin-bottom: 5rem;
+      }
+      .question span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .question-prompt {
+        margin-top: 0.8rem;
+        font-weight: 700;
+      }
+      .question-answer {
+        margin-top: 1.6rem;
+        padding-left: 0;
+        box-sizing: border-box;
+      }
+      .question-answer label {
+        max-width: 80rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        min-width: 18rem;
+        border: solid #1c1d1f 2px;
+      }
+      .question-answer div {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .question-answer div:hover {
+        background-color: #f5f5f5;
+      }
+      .question-answer input {
+        display: none;
+      }
+      .question-answer span {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 1.6rem;
+        top: 0;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+        border: 0.2rem solid #1c1d1f;
+        position: relative;
+      }
+      .selected {
+        background: #1c1d1f;
+        box-shadow: 0 0 0 0.4rem #fff inset;
+      }
+      .score {
+              position: fixed;
+            }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div id="score" class="score">
+      <span>Score: N/A of N/A</span>
+    </div>
+    <div id="quiz-container" class="quiz-content"></div>
+
+    <script>
+      const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 49355774, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following is NOT a way to convert a column to Datetime64?</p>", "relatedLectureIds": ["33233836"], "feedbacks": ["", "", ".to_dt() is not a Pandas method.", ""], "answers": ["<p>.astype()</p>", "<p>pd.to_datetime()</p>", "<p>.to_dt()</p>", "<p>None of the above</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Which of the following is NOT a way to convert a column to Datetime64?", "related_lectures": [{"_class": "lecture", "id": 33233836, "title": "Converting To Datetimes", "created": "2022-07-25T12:58:46Z", "is_published": true, "asset": {"_class": "asset", "id": 42847352, "asset_type": "Video", "title": "S7L2_DateTime_Conversion_V2.mp4", "created": "2022-08-02T22:40:13Z"}, "object_index": 165, "url": "/course/python-pandas/learn/lecture/33233836"}]}, {"_class": "assessment", "id": 49355778, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following date format codes returns a date with day, month and year?</p>", "relatedLectureIds": ["33233838"], "feedbacks": ["", "%D returns a full date, %m returns month, %y returns year, and %d returns day of month.", "", ""], "answers": ["<p>%m</p>", "<p>%D</p>", "<p>%y</p>", "<p>%d</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which of the following date format codes returns a date with day, month and year?", "related_lectures": [{"_class": "lecture", "id": 33233838, "title": "Formatting Dates", "created": "2022-07-25T12:58:52Z", "is_published": true, "asset": {"_class": "asset", "id": 42847288, "asset_type": "Video", "title": "S7L3_DateTime_Formats_V2.mp4", "created": "2022-08-02T22:36:59Z"}, "object_index": 166, "url": "/course/python-pandas/learn/lecture/33233838"}]}, {"_class": "assessment", "id": 49355782, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will extract the month from a datetime column?</p>", "relatedLectureIds": ["33233840"], "feedbacks": ["We need to use the .dt accessor, then specify the month datepart .month to extrac the month from a datetime column.", "", "", ""], "answers": ["<p>df[\"column\"].dt.month</p>", "<p>df[\"column\"].month</p>", "<p>df[\"column\"].to_month</p>", "<p>month(df[\"column\"])</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which of the following will extract the month from a datetime column?", "related_lectures": [{"_class": "lecture", "id": 33233840, "title": "Date & Time Parts", "created": "2022-07-25T12:58:58Z", "is_published": true, "asset": {"_class": "asset", "id": 42847256, "asset_type": "Video", "title": "S7L4_Datetime_parts_V2.mp4", "created": "2022-08-02T22:34:49Z"}, "object_index": 167, "url": "/course/python-pandas/learn/lecture/33233840"}]}, {"_class": "assessment", "id": 49355790, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following dates will be returned by the following timedelta arithmetic?</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2022-07-26_01-29-04-b88d32b1d71c2060007c9e5fd972c79d.png\">", "relatedLectureIds": ["33233846"], "feedbacks": ["", "", "The time delta adds 1 week to the date January 1st, 2020. One week after January 1st is January 8th.", ""], "answers": ["<p>'2020-01-01'</p>", "<p>'2020-01-02'</p>", "<p>'2020-01-08'</p>", "<p>'2020-02-01'</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Which of the following dates will be returned by the following timedelta arithmetic?", "related_lectures": [{"_class": "lecture", "id": 33233846, "title": "Time Deltas & Arithmetic", "created": "2022-07-25T12:59:15Z", "is_published": true, "asset": {"_class": "asset", "id": 42865440, "asset_type": "Video", "title": "S7L7_Time_Deltas_V2.mp4", "created": "2022-08-03T20:13:52Z"}, "object_index": 170, "url": "/course/python-pandas/learn/lecture/33233846"}]}, {"_class": "assessment", "id": 49355792, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will be returned from calling .loc[\"2022\"] on a DataFrame with a datetime64 index?</p>", "relatedLectureIds": ["33233856"], "feedbacks": ["Dateparts can be specified to successfully access rows in DataFrames with time series indices. Because a slice was not specified, only rows from the year 2022 will be returned.", "", "", ""], "answers": ["<p>All rows from the year 2022.</p>", "<p>All rows up to and including the year 2022.</p>", "<p>All rows up to but NOT including 2022.</p>", "<p>An error, entire dates must be specifed.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which of the following will be returned from calling .loc[\"2022\"] on a DataFrame with a datetime64 index?", "related_lectures": [{"_class": "lecture", "id": 33233856, "title": "Time Series Indices", "created": "2022-07-25T12:59:33Z", "is_published": true, "asset": {"_class": "asset", "id": 42847322, "asset_type": "Video", "title": "S7L10_Time_Series_Index_V2.mp4", "created": "2022-08-02T22:38:41Z"}, "object_index": 173, "url": "/course/python-pandas/learn/lecture/33233856"}]}, {"_class": "assessment", "id": 49355796, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will fill a missing value by drawing from a previous row?</p>", "relatedLectureIds": ["33233856"], "feedbacks": ["", "The .ffill() method fills a series forward, pushing the most recent value forward.", "", ""], "answers": ["<p>.bfill()</p>", "<p>.ffill()</p>", "<p>.interpolate()</p>", "<p>.fillna(series[-1])</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which of the following will fill a missing value by drawing from a previous row?", "related_lectures": [{"_class": "lecture", "id": 33233856, "title": "Time Series Indices", "created": "2022-07-25T12:59:33Z", "is_published": true, "asset": {"_class": "asset", "id": 42847322, "asset_type": "Video", "title": "S7L10_Time_Series_Index_V2.mp4", "created": "2022-08-02T22:38:41Z"}, "object_index": 173, "url": "/course/python-pandas/learn/lecture/33233856"}]}, {"_class": "assessment", "id": 49355800, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will calculate the difference between a value in a row of data and the value in the row before it?</p>", "relatedLectureIds": ["33233872"], "feedbacks": ["", "The .diff() method will calculate the difference between the value in one row and the value the prior row (or multiple rows if specified). Great for calculating growth! ", "", ""], "answers": ["<p>.shift()</p>", "<p>.diff()</p>", "<p>.rolling()</p>", "<p>A join must be performed to do this.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which of the following will calculate the difference between a value in a row of data and the value in the row before it?", "related_lectures": [{"_class": "lecture", "id": 33233872, "title": "PRO TIP: DIFF()", "created": "2022-07-25T13:00:03Z", "is_published": true, "asset": {"_class": "asset", "id": 42847324, "asset_type": "Video", "title": "S7L15_Diff_V2.mp4", "created": "2022-08-02T22:38:42Z"}, "object_index": 178, "url": "/course/python-pandas/learn/lecture/33233872"}]}, {"_class": "assessment", "id": 49355802, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will calculate a 90-day moving average on a daily series?</p>", "relatedLectureIds": ["33233890"], "feedbacks": ["We need to specify our series, then the rolling method, with the window size passed, and finally the mean method to aggregate.", "", "", ""], "answers": ["<p>series.rolling(90).mean()</p>", "<p>series.mean(90)</p>", "<p>series.mean.rolling(90)</p>", "<p>series.rolling(90)</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which of the following will calculate a 90-day moving average on a daily series?", "related_lectures": [{"_class": "lecture", "id": 33233890, "title": "Rolling Aggregations", "created": "2022-07-25T13:00:40Z", "is_published": true, "asset": {"_class": "asset", "id": 42847348, "asset_type": "Video", "title": "S7L21_Rolling_Aggregations_V2.mp4", "created": "2022-08-02T22:39:52Z"}, "object_index": 184, "url": "/course/python-pandas/learn/lecture/33233890"}]}]};
+      var correct = 0;
+      var total = 0;
+      const questionData = quizData.questions
+      const passPercent = quizData.pass_percent
+
+      function main() {
+        total = questionData.length;
+
+        var questions = [];
+        for (var i = 0; i < questionData.length; i++) {
+          var question = questionData[i];
+          var questionText = question.prompt.question;
+          var answers = question.prompt.answers;
+          var correctAnswer = question.correct_response[0];
+          var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+          var questionObj = {
+            question: questionText,
+            correctAnswer: correctAnswerText,
+            answers: answers,
+            id: question.id,
+          };
+          questions.push(questionObj);
+        }
+
+        updateScore();
+
+        // display the questions
+        var questionsContainer = document.getElementById("quiz-container");
+        for (var i = 0; i < questions.length; i++) {
+          var question = questions[i];
+          var questionElement = document.createElement("form");
+          questionElement.className = "question";
+          questionElement.innerHTML =
+            "<span>Question " +
+            (i + 1) +
+            ":</span>" +
+            '<div class="question-prompt">' +
+            question.question +
+            "</div>";
+          questionElement.id = question.id;
+          questionElement.classList.add("quiz-container");
+          var answersElement = document.createElement("ul");
+          answersElement.className = "answers";
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+
+          questionElement.appendChild(answersElement);
+
+          // add a submit button
+          var submitButton = document.createElement("button");
+          submitButton.className = "submit";
+          submitButton.innerHTML = "Submit";
+          submitButton.classList.add("submit-button");
+
+          submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            var questionElement = e.target.parentElement;
+            var questionId = questionElement.id;
+            var question = questions.filter(function (q) {
+              return q.id == questionId;
+            })[0];
+
+            // set the border color of all answers to black
+            var answers = questionElement.getElementsByClassName("answer");
+            for (var i = 0; i < answers.length; i++) {
+              console.log(answers[i]);
+              answers[i].children[0].style.borderColor = "#1c1d1f";
+            }
+
+            var answer = questionElement.querySelector(
+              'input[type="radio"]:checked'
+            );
+            if (answer) {
+              var answerIndex = answer.value;
+              var answerText = question.answers[answerIndex];
+              if (answerText == question.correctAnswer) {
+                answer.parentElement.parentElement.style.borderColor =
+                  "limegreen";
+                // alert("Correct!");
+                correct++;
+                updateScore();
+              } else {
+                answer.parentElement.parentElement.style.borderColor = "red";
+                // alert("Incorrect!");
+              }
+            } else {
+              alert("Please select an answer.");
+            }
+          });
+
+          // add button
+          questionElement.appendChild(submitButton);
+
+          questionsContainer.appendChild(questionElement);
+        }
+      }
+
+      function select(question, answer) {
+        var questionElement = document.getElementById(question);
+        var answers = questionElement.getElementsByClassName("answer");
+        for (var i = 0; i < answers.length; i++) {
+          var span = answers[i].children[0].children[0].children[0];
+          var input = answers[i].children[0].children[0].children[1];
+          span.classList.remove("selected");
+          input.checked = false;
+        }
+        var span = answers[answer].children[0].children[0].children[0];
+        var input = answers[answer].children[0].children[0].children[1];
+        span.classList.add("selected");
+        input.checked = true;
+      }
+
+      function updateScore() {
+        var scoreElem = document.getElementById("score");
+        const score = (correct / total) * 100;
+        scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+      }
+    </script>
+  </body>
+</html>

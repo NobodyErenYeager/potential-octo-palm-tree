@@ -1,0 +1,224 @@
+01 - Getting Started
+	(1280, 720) | 001 Course Structure & Outline.mp4
+	(1280, 720) | 004 Introducing the Course Project.mp4
+	(1280, 720) | 005 Setting Expectations.mp4
+	(1280, 720) | 006 Jupyter Installation & Launch.mp4
+02 - NumPy Primer
+	(1280, 720) | 001 Pandas & NumPy Intro.mp4
+	(1280, 720) | 002 Numpy Arrays & Array Properties.mp4
+	(1280, 720) | 004 ASSIGNMENT Array Basics.mp4
+	(1280, 720) | 005 SOLUTION Array Basics.mp4
+	(1280, 720) | 006 Array Creation.mp4
+	(1280, 720) | 007 Random Number Generation.mp4
+	(1280, 720) | 009 ASSIGNMENT Array Creation.mp4
+	(1280, 720) | 010 SOLUTION Array Creation.mp4
+	(1280, 720) | 011 Indexing & Slicing Arrays.mp4
+	(1280, 720) | 013 ASSIGNMENT Indexing & Slicing Arrays.mp4
+	(1280, 720) | 014 SOLUTION Indexing & Slicing Arrays.mp4
+	(1280, 720) | 015 Array Operations.mp4
+	(1280, 720) | 017 ASSIGNMENT Array Operations.mp4
+	(1280, 720) | 018 SOLUTION Array Operations.mp4
+	(1280, 720) | 019 Filtering Arrays & Modifying Array Values.mp4
+	(1280, 720) | 020 The Where Function.mp4
+	(1280, 720) | 022 ASSIGNMENT Filtering & Modifying Arrays.mp4
+	(1280, 720) | 023 SOLUTION Filtering & Modifying Arrays.mp4
+	(1280, 720) | 024 Array Aggregation.mp4
+	(1280, 720) | 025 Array Functions.mp4
+	(1280, 720) | 026 Sorting Arrays.mp4
+	(1280, 720) | 028 ASSIGNMENT Aggregation & Sorting.mp4
+	(1280, 720) | 029 SOLUTION Aggregation & Sorting.mp4
+	(1280, 720) | 030 Vectorization.mp4
+	(1280, 720) | 031 Broadcasting.mp4
+	(1280, 720) | 033 ASSIGNMENT Bringing it all together.mp4
+	(1280, 720) | 034 SOLUTION Bringing it all together.mp4
+	(1280, 720) | 035 Key Takeaways.mp4
+03 - Pandas Series
+	(1280, 720) | 001 Series Basics.mp4
+	(1280, 720) | 002 Pandas Data Types & Type Conversion.mp4
+	(1280, 720) | 004 ASSIGNMENT Data Types & Type Conversion.mp4
+	(1280, 720) | 005 SOLUTION Data Types & Type Conversion.mp4
+	(1280, 720) | 006 The Series Index & Custom Indices.mp4
+	(1280, 720) | 007 The .iloc Accessor.mp4
+	(1280, 720) | 008 The .loc Accessor.mp4
+	(1280, 720) | 009 Duplicate Index Values & Resetting The Index.mp4
+	(1280, 720) | 011 ASSIGNMENT Accessing Data & Resetting The Index.mp4
+	(1280, 720) | 012 SOLUTION Accessing Data & Resetting The Index.mp4
+	(1280, 720) | 013 Filtering Series & Logical Tests.mp4
+	(1280, 720) | 014 Sorting Series.mp4
+	(1280, 720) | 016 ASSIGNMENT Sorting & Filtering Series.mp4
+	(1280, 720) | 017 SOLUTION Sorting & Filtering Series.mp4
+	(1280, 720) | 018 Numeric Series Operations.mp4
+	(1280, 720) | 019 Text Series Operations.mp4
+	(1280, 720) | 021 ASSIGNMENT Series Operations.mp4
+	(1280, 720) | 022 SOLUTION Series Operations.mp4
+	(1280, 720) | 023 Numerical Series Aggregation.mp4
+	(1280, 720) | 024 Categorical Series Aggregation.mp4
+	(1280, 720) | 026 ASSIGNMENT Series Aggregation.mp4
+	(1280, 720) | 027 SOLUTION Series Aggregation.mp4
+	(1280, 720) | 028 Missing Data Representation in Pandas.mp4
+	(1280, 720) | 029 Identifying Missing Data.mp4
+	(1280, 720) | 030 Fixing Missing Data.mp4
+	(1280, 720) | 032 ASSIGNMENT Missing Data.mp4
+	(1280, 720) | 033 SOLUTION Missing Data.mp4
+	(1280, 720) | 034 Applying Custom Functions to Series.mp4
+	(1280, 720) | 035 Pandas Where (vs. NumPy Where).mp4
+	(1280, 720) | 037 ASSIGNMENT Apply & Where.mp4
+	(1280, 720) | 038 SOLUTION Apply & Where.mp4
+	(1280, 720) | 039 Key Takeaways.mp4
+04 - Intro to DataFrames
+	(1280, 720) | 001 DataFrame Basics.mp4
+	(1280, 720) | 002 Creating a DataFrame.mp4
+	(1280, 720) | 004 Exploring DataFrames Heads, Tails & Sample.mp4
+	(1280, 720) | 005 ASSIGNMENT DataFrame Basics.mp4
+	(1280, 720) | 006 SOLUTION DataFrame Basics.mp4
+	(1280, 720) | 007 Exploring DataFrames Info & Describe.mp4
+	(1280, 720) | 009 ASSIGNMENT Exploring a DataFrame.mp4
+	(1280, 720) | 010 SOLUTION Exploring a DataFrame.mp4
+	(1280, 720) | 011 Accessing DataFrame Columns.mp4
+	(1280, 720) | 012 Accessing DataFrame Data with .iloc & .loc.mp4
+	(1280, 720) | 014 ASSIGNMENT Accessing DataFrame Data.mp4
+	(1280, 720) | 015 SOLUTION Accessing DataFrame Data.mp4
+	(1280, 720) | 016 Dropping Columns & Rows.mp4
+	(1280, 720) | 017 Identifying & Dropping Duplicates.mp4
+	(1280, 720) | 019 ASSIGNMENT Dropping Data.mp4
+	(1280, 720) | 020 SOLUTION Dropping Data.mp4
+	(1280, 720) | 021 Missing Data.mp4
+	(1280, 720) | 023 ASSIGNMENT Missing Data.mp4
+	(1280, 720) | 024 SOLUTION Missing Data.mp4
+	(1280, 720) | 025 Filtering DataFrames.mp4
+	(1280, 720) | 026 PRO TIP The Query Method.mp4
+	(1280, 720) | 028 ASSIGNMENT Filtering DataFrames.mp4
+	(1280, 720) | 029 SOLUTION Filtering DataFrames.mp4
+	(1280, 720) | 030 Sorting DataFrames.mp4
+	(1280, 720) | 032 ASSIGNMENT Sorting DataFrames.mp4
+	(1280, 720) | 033 SOLUTION Sorting DataFrames.mp4
+	(1280, 720) | 034 Renaming & Reordering Columns.mp4
+	(1280, 720) | 036 ASSIGNMENT Renaming & Reordering Columns.mp4
+	(1280, 720) | 037 SOLUTION Renaming & Reordering Columns.mp4
+	(1280, 720) | 038 Arithmetic & Boolean Column Creation.mp4
+	(1280, 720) | 040 ASSIGNMENT Arithmetic & Boolean Columns.mp4
+	(1280, 720) | 041 SOLUTION Arithmetic & Boolean Columns.mp4
+	(1280, 720) | 042 PRO TIP Advanced Conditional Columns with Select.mp4
+	(1280, 720) | 044 ASSIGNMENT The Select Function.mp4
+	(1280, 720) | 045 SOLUTION The Select Function.mp4
+	(1280, 720) | 046 The Map Method.mp4
+	(1280, 720) | 047 PRO TIP Multiple Column Creation with Assign.mp4
+	(1280, 720) | 049 ASSIGNMENT Map & Assign.mp4
+	(1280, 720) | 050 SOLUTION Map & Assign.mp4
+	(1280, 720) | 051 The Categorical Data Type.mp4
+	(1280, 720) | 052 Type Conversion.mp4
+	(1280, 720) | 053 PRO TIP Memory Usage & DataTypes.mp4
+	(1280, 720) | 054 PRO TIP Downcasting Numeric Data Types.mp4
+	(1280, 720) | 056 ASSIGNMENT DataFrame DataTypes.mp4
+	(1280, 720) | 057 SOLUTION DataFrame DataTypes.mp4
+	(1280, 720) | 058 Key Takeways.mp4
+05 - Aggregating & Reshaping DataFrames
+	(1280, 720) | 001 Basic Aggregations.mp4
+	(1280, 720) | 002 The Groupby Method.mp4
+	(1280, 720) | 004 ASSIGNMENT Groupby.mp4
+	(1280, 720) | 005 SOLUTION Groupby.mp4
+	(1280, 720) | 006 Grouping By Multiple Columns.mp4
+	(1280, 720) | 008 ASSIGNMENT Grouping By Multiple Columns.mp4
+	(1280, 720) | 009 SOLUTION Grouping By Multiple Columns.mp4
+	(1280, 720) | 010 Multi-Index DataFrames.mp4
+	(1280, 720) | 011 Modifying Multi-Indices.mp4
+	(1280, 720) | 013 ASSIGNMENT Multi-Index DataFrames.mp4
+	(1280, 720) | 014 SOLUTION Multi-Index DataFrames.mp4
+	(1280, 720) | 015 The Agg Method & Named Aggregations.mp4
+	(1280, 720) | 017 ASSIGNMENT The Agg Method.mp4
+	(1280, 720) | 018 SOLUTION The Agg Method.mp4
+	(1280, 720) | 019 PRO TIP Transforming DataFrames.mp4
+	(1280, 720) | 021 ASSIGNMENT Transforming a DataFrame.mp4
+	(1280, 720) | 022 SOLUTION Transforming a DataFrame.mp4
+	(1280, 720) | 023 Pivot Tables in Pandas.mp4
+	(1280, 720) | 025 Multiple Aggregation Pivot Tables.mp4
+	(1280, 720) | 026 PRO TIP Pivot Table Heatmaps.mp4
+	(1280, 720) | 027 Melting DataFrames.mp4
+	(1280, 720) | 029 ASSIGNMENT Pivot & Melt.mp4
+	(1280, 720) | 030 SOLUTION Pivot & Melt.mp4
+	(1280, 720) | 031 Key Takeaways.mp4
+06 - Basic Data Visualization in Python
+	(1280, 720) | 001 The matplotlib API & The .plot() Method.mp4
+	(1280, 720) | 002 ASSIGNMENT Basic Line Chart.mp4
+	(1280, 720) | 003 SOLUTION Basic Line Chart.mp4
+	(1280, 720) | 004 Chart Titles.mp4
+	(1280, 720) | 005 Chart Colors.mp4
+	(1280, 720) | 006 Line Styles.mp4
+	(1280, 720) | 007 Chart Legends & Gridlines.mp4
+	(1280, 720) | 008 Chart Styles.mp4
+	(1280, 720) | 009 ASSIGNMENT Stylized Line Chart.mp4
+	(1280, 720) | 010 SOLUTION Stylized Line Chart.mp4
+	(1280, 720) | 011 Subplots & Figure Size.mp4
+	(1280, 720) | 012 ASSIGNMENT Subplots.mp4
+	(1280, 720) | 013 SOLUTION Subplots.mp4
+	(1280, 720) | 014 Bar Charts.mp4
+	(1280, 720) | 015 Grouped & Stacked Bar Charts.mp4
+	(1280, 720) | 016 ASSIGNMENT Bar Charts.mp4
+	(1280, 720) | 017 SOLUTION Bar Charts.mp4
+	(1280, 720) | 018 Pie Charts & Scatterplots.mp4
+	(1280, 720) | 019 ASSIGNMENT Scatterplots.mp4
+	(1280, 720) | 020 SOLUTION Scatterplots.mp4
+	(1280, 720) | 021 Histograms.mp4
+	(1280, 720) | 022 ASSIGNMENT Histograms.mp4
+	(1280, 720) | 023 SOLUTION Histograms.mp4
+	(1280, 720) | 024 Saving Plots & Further Exploration.mp4
+	(1280, 720) | 025 Key Takeaways.mp4
+07 - MID-COURSE PROJECT
+	(1280, 720) | 001 Mid-Course Project Intro.mp4
+	(1280, 720) | 002 SOLUTION Mid-Course Project.mp4
+08 - Analyzing Dates & Times
+	(1280, 720) | 001 Times in Python and Pandas.mp4
+	(1280, 720) | 002 Converting To Datetimes.mp4
+	(1280, 720) | 003 Formatting Dates.mp4
+	(1280, 720) | 004 Date & Time Parts.mp4
+	(1280, 720) | 006 ASSIGNMENT Pandas Datetime Basics.mp4
+	(1280, 720) | 007 SOLUTION Pandas Datetime Basics.mp4
+	(1280, 720) | 008 Time Deltas & Arithmetic.mp4
+	(1280, 720) | 010 ASSIGNMENT Time Deltas.mp4
+	(1280, 720) | 011 SOLUTION Time Deltas.mp4
+	(1280, 720) | 012 Time Series Indices.mp4
+	(1280, 720) | 013 Missing Time Series Data.mp4
+	(1280, 720) | 015 ASSIGNMENT Missing Time Series Data.mp4
+	(1280, 720) | 016 SOLUTION Missing Time Series Data.mp4
+	(1280, 720) | 017 Shifting Time Series.mp4
+	(1280, 720) | 018 PRO TIP DIFF().mp4
+	(1280, 720) | 020 ASSIGNMENT Shift & Diff.mp4
+	(1280, 720) | 021 SOLUTION Shift & Diff.mp4
+	(1280, 720) | 022 Aggregation & Resampling.mp4
+	(1280, 720) | 024 ASSIGNMENT Resampling.mp4
+	(1280, 720) | 025 SOLUTION Resampling.mp4
+	(1280, 720) | 026 Rolling Aggregations.mp4
+	(1280, 720) | 028 ASSIGNMENT Rolling Aggregations.mp4
+	(1280, 720) | 029 SOLUTION Rolling Aggregations.mp4
+	(1280, 720) | 030 Key Takeaways.mp4
+09 - Importing & Exporting Data
+	(1280, 720) | 001 Preprocessing with read_csv.mp4
+	(1280, 720) | 002 Column Selection.mp4
+	(1280, 720) | 003 Row Selection & Missing Values.mp4
+	(1280, 720) | 005 PRO TIP Converters.mp4
+	(1280, 720) | 006 ASSIGNMENT Importing Data.mp4
+	(1280, 720) | 007 SOLUTION Importing Data.mp4
+	(1280, 720) | 008 Parsing Dates & Data Types.mp4
+	(1280, 720) | 010 Importing from Text & Excel Files.mp4
+	(1280, 720) | 011 Exporting to Flat Files.mp4
+	(1280, 720) | 013 ASSIGNMENT Importing & Exporting Excel Data.mp4
+	(1280, 720) | 014 SOLUTION Importing & Exporting Excel Data.mp4
+	(1280, 720) | 015 Working With SQL Databases.mp4
+	(1280, 720) | 016 Other Supported File Formats.mp4
+	(1280, 720) | 017 Key Takeaways.mp4
+10 - Joining DataFrames
+	(1280, 720) | 001 Why Multiple Tables.mp4
+	(1280, 720) | 002 Appending DataFrames.mp4
+	(1280, 720) | 004 ASSIGNMENT Appending DataFrames.mp4
+	(1280, 720) | 005 SOLUTION Appending DataFrames.mp4
+	(1280, 720) | 006 Joining DataFrames.mp4
+	(1280, 720) | 007 Join Types.mp4
+	(1280, 720) | 008 Inner Joins.mp4
+	(1280, 720) | 009 Left Joins.mp4
+	(1280, 720) | 011 ASSIGNMENT Joining DataFrames.mp4
+	(1280, 720) | 012 SOLUTION Joining DataFrames.mp4
+	(1280, 720) | 013 The Join Method.mp4
+	(1280, 720) | 014 Key Takeaways.mp4
+11 - FINAL COURSE PROJECT
+	(1280, 720) | 001 Final Project Intro.mp4
+	(1280, 720) | 002 SOLUTION Final Project.mp4

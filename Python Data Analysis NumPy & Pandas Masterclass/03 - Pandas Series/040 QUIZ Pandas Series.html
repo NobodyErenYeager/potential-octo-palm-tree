@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      code {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .quiz-content {
+        padding: 2.4rem;
+        word-break: break-word;
+        max-width: 86rem;
+        margin: 0 auto;
+      }
+      .quiz-container {
+        margin: 0 auto;
+        max-width: 84rem;
+        padding: 0;
+      }
+      .question {
+        margin-bottom: 5rem;
+      }
+      .question span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .question-prompt {
+        margin-top: 0.8rem;
+        font-weight: 700;
+      }
+      .question-answer {
+        margin-top: 1.6rem;
+        padding-left: 0;
+        box-sizing: border-box;
+      }
+      .question-answer label {
+        max-width: 80rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        min-width: 18rem;
+        border: solid #1c1d1f 2px;
+      }
+      .question-answer div {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .question-answer div:hover {
+        background-color: #f5f5f5;
+      }
+      .question-answer input {
+        display: none;
+      }
+      .question-answer span {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 1.6rem;
+        top: 0;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+        border: 0.2rem solid #1c1d1f;
+        position: relative;
+      }
+      .selected {
+        background: #1c1d1f;
+        box-shadow: 0 0 0 0.4rem #fff inset;
+      }
+      .score {
+              position: fixed;
+            }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div id="score" class="score">
+      <span>Score: N/A of N/A</span>
+    </div>
+    <div id="quiz-container" class="quiz-content"></div>
+
+    <script>
+      const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 49343552, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What are the values in a series stored as?</p>", "relatedLectureIds": ["33187380"], "feedbacks": ["", "", "The values in a Pandas Series are stored as a NumPy array.", ""], "answers": ["<p>A Python List</p>", "<p>A Python Tuple</p>", "<p>A NumPy Array</p>", "<p>Native Pandas Datatypes</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "What are the values in a series stored as?", "related_lectures": [{"_class": "lecture", "id": 33187380, "title": "Series Basics", "created": "2022-07-21T20:43:17Z", "is_published": true, "asset": {"_class": "asset", "id": 42757410, "asset_type": "Video", "title": "S2L1_Series_Basics_V3.mp4", "created": "2022-07-29T03:33:21Z"}, "object_index": 35, "url": "/course/python-pandas/learn/lecture/33187380"}]}, {"_class": "assessment", "id": 49343554, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is the default series index?</p>", "relatedLectureIds": ["33187380"], "feedbacks": ["", "", "The default series index is a range of integers the length of the Series.", ""], "answers": ["<p>There is no index by default</p>", "<p>An alphabetical list of letters</p>", "<p>A range of integers equal to the length of the data</p>", "<p>The name of the series.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "What is the default series index?", "related_lectures": [{"_class": "lecture", "id": 33187380, "title": "Series Basics", "created": "2022-07-21T20:43:17Z", "is_published": true, "asset": {"_class": "asset", "id": 42757410, "asset_type": "Video", "title": "S2L1_Series_Basics_V3.mp4", "created": "2022-07-29T03:33:21Z"}, "object_index": 35, "url": "/course/python-pandas/learn/lecture/33187380"}]}, {"_class": "assessment", "id": 49343558, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is the difference between .loc and .iloc?</p>", "relatedLectureIds": ["33187392"], "feedbacks": ["", "", "", ".loc is a label based accessor, .iloc is a positional indexer"], "answers": ["<p>They are equivalent</p>", "<p>.iloc is a label based accessor, .loc is a positional indexer</p>", "<p>.loc can only be used with string indexes</p>", "<p>.loc is a label based accessor, .iloc is a positional indexer</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "What is the difference between .loc and .iloc?", "related_lectures": [{"_class": "lecture", "id": 33187392, "title": "The .iloc Accessor", "created": "2022-07-21T20:43:45Z", "is_published": true, "asset": {"_class": "asset", "id": 42757418, "asset_type": "Video", "title": "S2L6_iloc_v2.mp4", "created": "2022-07-29T03:33:40Z"}, "object_index": 40, "url": "/course/python-pandas/learn/lecture/33187392"}]}, {"_class": "assessment", "id": 49343560, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which method will sort a Series by the data in a Series?</p>", "relatedLectureIds": ["33187408"], "feedbacks": ["", "", "", ".sort_values() will sort the data by the values in the series. To sort by index, use .sort_index()"], "answers": ["<p>.sort()</p>", "<p>.sorted()</p>", "<p>.sort_index()</p>", "<p>.sort_values()</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Which method will sort a Series by the data in a Series?", "related_lectures": [{"_class": "lecture", "id": 33187408, "title": "Sorting Series", "created": "2022-07-21T20:44:18Z", "is_published": true, "asset": {"_class": "asset", "id": 42757430, "asset_type": "Video", "title": "S2L12_Sorting_Series_V2.mp4", "created": "2022-07-29T03:34:31Z"}, "object_index": 46, "url": "/course/python-pandas/learn/lecture/33187408"}]}, {"_class": "assessment", "id": 49343564, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following will return True if \"hello\" is found in a row of text?</p>", "relatedLectureIds": ["33187418"], "feedbacks": ["The contains method will return Boolean values based on whether or not the given string appears inside of a value. To use the contains method, we must first specify the .str accessor.", "", "", ""], "answers": ["<p>series.str.contains(\"hello\")</p>", "<p>series.contains(\"hello\")</p>", "<p>series.str.search(\"hello\")</p>", "<p>series.search(\"hello\")</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which of the following will return True if \"hello\" is found in a row of text?", "related_lectures": [{"_class": "lecture", "id": 33187418, "title": "Text Series Operations", "created": "2022-07-21T20:44:40Z", "is_published": true, "asset": {"_class": "asset", "id": 42757456, "asset_type": "Video", "title": "S2L16_Text_series_Operations_V2.mp4", "created": "2022-07-29T03:38:02Z"}, "object_index": 50, "url": "/course/python-pandas/learn/lecture/33187418"}]}, {"_class": "assessment", "id": 49343566, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following aggregation methods can return a series of values rather than a single value?</p>", "relatedLectureIds": ["33187414"], "feedbacks": ["The quantile method can return multiple quantiles, or percentiles in your data. The other methods return a single value.", "", "", ""], "answers": ["<p>quantile()</p>", "<p>min()</p>", "<p>max()</p>", "<p>prod()</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which of the following aggregation methods can return a series of values rather than a single value?", "related_lectures": [{"_class": "lecture", "id": 33187414, "title": "Numeric Series Operations", "created": "2022-07-21T20:44:33Z", "is_published": true, "asset": {"_class": "asset", "id": 42757452, "asset_type": "Video", "title": "S2L15_Numeric_Operations_V2.mp4", "created": "2022-07-29T03:37:47Z"}, "object_index": 49, "url": "/course/python-pandas/learn/lecture/33187414"}]}, {"_class": "assessment", "id": 49343576, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following methods will produce the output seen here when called on the series 'state'?</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2022-07-25_16-09-39-eddbffc368516f9f84d447b94ded8f25.png\">", "relatedLectureIds": ["33187432"], "feedbacks": ["", "The value counts method returns a Series containing the unique values in a series as the index and the number of times each value occurs as the values.", "", ""], "answers": ["<p>.nunique()</p>", "<p>.value_counts()</p>", "<p>.sum()</p>", "<p>.tally()</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which of the following methods will produce the output seen here when called on the series 'state'?", "related_lectures": [{"_class": "lecture", "id": 33187432, "title": "Categorical Series Aggregation", "created": "2022-07-21T20:45:05Z", "is_published": true, "asset": {"_class": "asset", "id": 42757466, "asset_type": "Video", "title": "S2L20_Categorical_Aggregations_V2.mp4", "created": "2022-07-29T03:38:40Z"}, "object_index": 54, "url": "/course/python-pandas/learn/lecture/33187432"}]}, {"_class": "assessment", "id": 49343584, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is the difference between pandas.where() and numpy .where()?</p>", "relatedLectureIds": ["33187458"], "feedbacks": ["", "", "", "Pandas where doesn't have an argument for value if True, while NumPy does. We can mimic NumPy by chaining Pandas where."], "answers": ["<p>There is no difference</p>", "<p>NumPy.where doesn't have an argument for value if False</p>", "<p>NumPy.where doesn't have an argument for Value if True</p>", "<p>Pandas.where doesn't have an argument for value if True</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "What is the difference between pandas.where() and numpy .where()?", "related_lectures": [{"_class": "lecture", "id": 33187458, "title": "Pandas Where (vs. NumPy Where)", "created": "2022-07-21T20:46:24Z", "is_published": true, "asset": {"_class": "asset", "id": 42757500, "asset_type": "Video", "title": "S2L29_Where_V2.mp4", "created": "2022-07-29T03:40:49Z"}, "object_index": 63, "url": "/course/python-pandas/learn/lecture/33187458"}]}]};
+      var correct = 0;
+      var total = 0;
+      const questionData = quizData.questions
+      const passPercent = quizData.pass_percent
+
+      function main() {
+        total = questionData.length;
+
+        var questions = [];
+        for (var i = 0; i < questionData.length; i++) {
+          var question = questionData[i];
+          var questionText = question.prompt.question;
+          var answers = question.prompt.answers;
+          var correctAnswer = question.correct_response[0];
+          var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+          var questionObj = {
+            question: questionText,
+            correctAnswer: correctAnswerText,
+            answers: answers,
+            id: question.id,
+          };
+          questions.push(questionObj);
+        }
+
+        updateScore();
+
+        // display the questions
+        var questionsContainer = document.getElementById("quiz-container");
+        for (var i = 0; i < questions.length; i++) {
+          var question = questions[i];
+          var questionElement = document.createElement("form");
+          questionElement.className = "question";
+          questionElement.innerHTML =
+            "<span>Question " +
+            (i + 1) +
+            ":</span>" +
+            '<div class="question-prompt">' +
+            question.question +
+            "</div>";
+          questionElement.id = question.id;
+          questionElement.classList.add("quiz-container");
+          var answersElement = document.createElement("ul");
+          answersElement.className = "answers";
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+
+          questionElement.appendChild(answersElement);
+
+          // add a submit button
+          var submitButton = document.createElement("button");
+          submitButton.className = "submit";
+          submitButton.innerHTML = "Submit";
+          submitButton.classList.add("submit-button");
+
+          submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            var questionElement = e.target.parentElement;
+            var questionId = questionElement.id;
+            var question = questions.filter(function (q) {
+              return q.id == questionId;
+            })[0];
+
+            // set the border color of all answers to black
+            var answers = questionElement.getElementsByClassName("answer");
+            for (var i = 0; i < answers.length; i++) {
+              console.log(answers[i]);
+              answers[i].children[0].style.borderColor = "#1c1d1f";
+            }
+
+            var answer = questionElement.querySelector(
+              'input[type="radio"]:checked'
+            );
+            if (answer) {
+              var answerIndex = answer.value;
+              var answerText = question.answers[answerIndex];
+              if (answerText == question.correctAnswer) {
+                answer.parentElement.parentElement.style.borderColor =
+                  "limegreen";
+                // alert("Correct!");
+                correct++;
+                updateScore();
+              } else {
+                answer.parentElement.parentElement.style.borderColor = "red";
+                // alert("Incorrect!");
+              }
+            } else {
+              alert("Please select an answer.");
+            }
+          });
+
+          // add button
+          questionElement.appendChild(submitButton);
+
+          questionsContainer.appendChild(questionElement);
+        }
+      }
+
+      function select(question, answer) {
+        var questionElement = document.getElementById(question);
+        var answers = questionElement.getElementsByClassName("answer");
+        for (var i = 0; i < answers.length; i++) {
+          var span = answers[i].children[0].children[0].children[0];
+          var input = answers[i].children[0].children[0].children[1];
+          span.classList.remove("selected");
+          input.checked = false;
+        }
+        var span = answers[answer].children[0].children[0].children[0];
+        var input = answers[answer].children[0].children[0].children[1];
+        span.classList.add("selected");
+        input.checked = true;
+      }
+
+      function updateScore() {
+        var scoreElem = document.getElementById("score");
+        const score = (correct / total) * 100;
+        scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+      }
+    </script>
+  </body>
+</html>

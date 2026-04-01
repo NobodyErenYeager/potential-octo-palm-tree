@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      code {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .quiz-content {
+        padding: 2.4rem;
+        word-break: break-word;
+        max-width: 86rem;
+        margin: 0 auto;
+      }
+      .quiz-container {
+        margin: 0 auto;
+        max-width: 84rem;
+        padding: 0;
+      }
+      .question {
+        margin-bottom: 5rem;
+      }
+      .question span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .question-prompt {
+        margin-top: 0.8rem;
+        font-weight: 700;
+      }
+      .question-answer {
+        margin-top: 1.6rem;
+        padding-left: 0;
+        box-sizing: border-box;
+      }
+      .question-answer label {
+        max-width: 80rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        min-width: 18rem;
+        border: solid #1c1d1f 2px;
+      }
+      .question-answer div {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .question-answer div:hover {
+        background-color: #f5f5f5;
+      }
+      .question-answer input {
+        display: none;
+      }
+      .question-answer span {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 1.6rem;
+        top: 0;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+        border: 0.2rem solid #1c1d1f;
+        position: relative;
+      }
+      .selected {
+        background: #1c1d1f;
+        box-shadow: 0 0 0 0.4rem #fff inset;
+      }
+      .score {
+              position: fixed;
+            }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div id="score" class="score">
+      <span>Score: N/A of N/A</span>
+    </div>
+    <div id="quiz-container" class="quiz-content"></div>
+
+    <script>
+      const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 49237742, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How many 'rows' and 'columns' does an array with shape (6, 3) have?</p>", "relatedLectureIds": ["33187248"], "feedbacks": ["", "", "", "The first axis is the 'row' axis which has length 6, the second is the 'column' index which has length 3."], "answers": ["<p>18 Rows, 1 Column</p>", "<p>1 Row, 18 Columns</p>", "<p>3 Rows, 6 Columns</p>", "<p>6 Rows, 3 Columns</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "How many 'rows' and 'columns' does an array with shape (6, 3) have?", "related_lectures": [{"_class": "lecture", "id": 33187248, "title": "Numpy Arrays & Array Properties", "created": "2022-07-21T20:36:16Z", "is_published": true, "asset": {"_class": "asset", "id": 42756126, "asset_type": "Video", "title": "S1L2_Array_Basics_V2.mp4", "created": "2022-07-29T00:31:18Z"}, "object_index": 8, "url": "/course/python-pandas/learn/lecture/33187248"}]}, {"_class": "assessment", "id": 49237746, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which array method will modify the shape of an array to specified dimensions?</p>", "relatedLectureIds": ["33187278"], "feedbacks": ["The reshape method allows us to shape compatible dataframes into the specified dimensions.", "", "", ""], "answers": ["<p>.reshape()</p>", "<p>.modify()</p>", "<p>.mold()</p>", "<p>.dim()</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which array method will modify the shape of an array to specified dimensions?", "related_lectures": [{"_class": "lecture", "id": 33187278, "title": "Array Creation", "created": "2022-07-21T20:37:49Z", "is_published": true, "asset": {"_class": "asset", "id": 42756096, "asset_type": "Video", "title": "S1L5_Array_Creation_V2.mp4", "created": "2022-07-29T00:26:20Z"}, "object_index": 11, "url": "/course/python-pandas/learn/lecture/33187278"}]}, {"_class": "assessment", "id": 49343480, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following is returned by np.linspace(0, 20, 5)?</p>", "relatedLectureIds": ["33187278"], "feedbacks": ["", "", "The linspace function creates an array of floats with given start (0) &amp; stop (20) values and n elements (5), with a consistent step size - stop is inclusive.", ""], "answers": ["<p>array([ 5., 10., 15., 20.])</p>", "<p>array([ 0., 4., 8, 12., 16.])</p>", "<p>array([ 0., 5., 10., 15., 20.])</p>", "<p>array([ 0., 5., 10., 15.])</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Which of the following is returned by np.linspace(0, 20, 5)?", "related_lectures": [{"_class": "lecture", "id": 33187278, "title": "Array Creation", "created": "2022-07-21T20:37:49Z", "is_published": true, "asset": {"_class": "asset", "id": 42756096, "asset_type": "Video", "title": "S1L5_Array_Creation_V2.mp4", "created": "2022-07-29T00:26:20Z"}, "object_index": 11, "url": "/course/python-pandas/learn/lecture/33187278"}]}, {"_class": "assessment", "id": 49343488, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What does np.array([3, 4, 5]).sum() return?</p>", "relatedLectureIds": ["33187296"], "feedbacks": ["", "This creates an array out of the list, then sums the elements, returning 12", "", ""], "answers": ["<p>4</p>", "<p>12</p>", "<p>60</p>", "<p>ERROR</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "What does np.array([3, 4, 5]).sum() return?", "related_lectures": [{"_class": "lecture", "id": 33187296, "title": "Array Operations", "created": "2022-07-21T20:38:29Z", "is_published": true, "asset": {"_class": "asset", "id": 42756146, "asset_type": "Video", "title": "S1L12_Array_Operations_V2.mp4", "created": "2022-07-29T00:33:05Z"}, "object_index": 18, "url": "/course/python-pandas/learn/lecture/33187296"}]}, {"_class": "assessment", "id": 49343518, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is returned by the following code?</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2022-07-25_16-23-18-68e9bea3f1069acd029b5236429a7061.png\">", "relatedLectureIds": ["33187296"], "feedbacks": ["The boolean array returns True for the last item, false for the others.", "", "", ""], "answers": ["<p>array([False, False, True])</p>", "<p>array(['True', 'True', 'False'])</p>", "<p>TRUE</p>", "<p>FALSE</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "What is returned by the following code?", "related_lectures": [{"_class": "lecture", "id": 33187296, "title": "Array Operations", "created": "2022-07-21T20:38:29Z", "is_published": true, "asset": {"_class": "asset", "id": 42756146, "asset_type": "Video", "title": "S1L12_Array_Operations_V2.mp4", "created": "2022-07-29T00:33:05Z"}, "object_index": 18, "url": "/course/python-pandas/learn/lecture/33187296"}]}, {"_class": "assessment", "id": 49343528, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How many elements will be in the array returned by the following code?</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2022-07-25_15-58-08-7f1684d74ba28c613a37d0bcfe2b7656.png\">", "relatedLectureIds": ["33187296"], "feedbacks": ["", "", "This array created with arange has 10 elements, all integers from 0 to 10. The boolean test filters out all odd numbered values, leaving the 5 even values in the array returned.", ""], "answers": ["<p>0</p>", "<p>2</p>", "<p>5</p>", "<p>10</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "How many elements will be in the array returned by the following code?", "related_lectures": [{"_class": "lecture", "id": 33187296, "title": "Array Operations", "created": "2022-07-21T20:38:29Z", "is_published": true, "asset": {"_class": "asset", "id": 42756146, "asset_type": "Video", "title": "S1L12_Array_Operations_V2.mp4", "created": "2022-07-29T00:33:05Z"}, "object_index": 18, "url": "/course/python-pandas/learn/lecture/33187296"}]}, {"_class": "assessment", "id": 49343532, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following index values will return the last element in an array?</p>", "relatedLectureIds": ["33187296"], "feedbacks": ["", "", "", "Indexing arrays works just like indexing Base Python tuples and lists. Passing an index of -1 will return the last element in an Array."], "answers": ["<p>0</p>", "<p>1</p>", "<p>len(array)</p>", "<p>-1</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Which of the following index values will return the last element in an array?", "related_lectures": [{"_class": "lecture", "id": 33187296, "title": "Array Operations", "created": "2022-07-21T20:38:29Z", "is_published": true, "asset": {"_class": "asset", "id": 42756146, "asset_type": "Video", "title": "S1L12_Array_Operations_V2.mp4", "created": "2022-07-29T00:33:05Z"}, "object_index": 18, "url": "/course/python-pandas/learn/lecture/33187296"}]}, {"_class": "assessment", "id": 49343536, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following NumPy function returns an array with values based on the results of a logical test?</p>", "relatedLectureIds": ["33187306"], "feedbacks": ["", "", "Numpy's where function will an array with each element assigned a value if true, or a value if false if, based on a logical test passed to it.", ""], "answers": ["<p>sumif()</p>", "<p>if()</p>", "<p>where()</p>", "<p>test()</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "Which of the following NumPy function returns an array with values based on the results of a logical test?", "related_lectures": [{"_class": "lecture", "id": 33187306, "title": "The Where Function", "created": "2022-07-21T20:38:55Z", "is_published": true, "asset": {"_class": "asset", "id": 42756154, "asset_type": "Video", "title": "S1L15.5_The_Where_Function_V2.mp4", "created": "2022-07-29T00:34:27Z"}, "object_index": 22, "url": "/course/python-pandas/learn/lecture/33187306"}]}, {"_class": "assessment", "id": 49343540, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is vectorization?</p>", "relatedLectureIds": ["33187348"], "feedbacks": ["", "", "", "Vectorization is the process of pushing for loops down to the C language, which makes iteration much faster"], "answers": ["<p>Vectorization is the process of sizing unequal arrays to match</p>", "<p>Vectorization is the process of creating a NumPy array</p>", "<p>Vectorization is the process of creating linear algebra vectors in NumPy</p>", "<p>Vectorization is the process of pushing for loops down to the C language, which makes iteration much faster</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "What is vectorization?", "related_lectures": [{"_class": "lecture", "id": 33187348, "title": "Vectorization", "created": "2022-07-21T20:41:29Z", "is_published": true, "asset": {"_class": "asset", "id": 42735310, "asset_type": "Video", "title": "S1L23_Vectorization_V2.mp4", "created": "2022-07-28T01:14:27Z"}, "object_index": 30, "url": "/course/python-pandas/learn/lecture/33187348"}]}, {"_class": "assessment", "id": 49343542, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which function will create an array out of a Python list?</p>", "relatedLectureIds": ["33187248"], "feedbacks": ["", "The array function can convert compatible objects like Python lists and tuples into NumPy arrays.", "", ""], "answers": ["<p>np.list()</p>", "<p>np.array()</p>", "<p>np.list_to_array()</p>", "<p>np.ones()</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "Which function will create an array out of a Python list?", "related_lectures": [{"_class": "lecture", "id": 33187248, "title": "Numpy Arrays & Array Properties", "created": "2022-07-21T20:36:16Z", "is_published": true, "asset": {"_class": "asset", "id": 42756126, "asset_type": "Video", "title": "S1L2_Array_Basics_V2.mp4", "created": "2022-07-29T00:31:18Z"}, "object_index": 8, "url": "/course/python-pandas/learn/lecture/33187248"}]}]};
+      var correct = 0;
+      var total = 0;
+      const questionData = quizData.questions
+      const passPercent = quizData.pass_percent
+
+      function main() {
+        total = questionData.length;
+
+        var questions = [];
+        for (var i = 0; i < questionData.length; i++) {
+          var question = questionData[i];
+          var questionText = question.prompt.question;
+          var answers = question.prompt.answers;
+          var correctAnswer = question.correct_response[0];
+          var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+          var questionObj = {
+            question: questionText,
+            correctAnswer: correctAnswerText,
+            answers: answers,
+            id: question.id,
+          };
+          questions.push(questionObj);
+        }
+
+        updateScore();
+
+        // display the questions
+        var questionsContainer = document.getElementById("quiz-container");
+        for (var i = 0; i < questions.length; i++) {
+          var question = questions[i];
+          var questionElement = document.createElement("form");
+          questionElement.className = "question";
+          questionElement.innerHTML =
+            "<span>Question " +
+            (i + 1) +
+            ":</span>" +
+            '<div class="question-prompt">' +
+            question.question +
+            "</div>";
+          questionElement.id = question.id;
+          questionElement.classList.add("quiz-container");
+          var answersElement = document.createElement("ul");
+          answersElement.className = "answers";
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+
+          questionElement.appendChild(answersElement);
+
+          // add a submit button
+          var submitButton = document.createElement("button");
+          submitButton.className = "submit";
+          submitButton.innerHTML = "Submit";
+          submitButton.classList.add("submit-button");
+
+          submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            var questionElement = e.target.parentElement;
+            var questionId = questionElement.id;
+            var question = questions.filter(function (q) {
+              return q.id == questionId;
+            })[0];
+
+            // set the border color of all answers to black
+            var answers = questionElement.getElementsByClassName("answer");
+            for (var i = 0; i < answers.length; i++) {
+              console.log(answers[i]);
+              answers[i].children[0].style.borderColor = "#1c1d1f";
+            }
+
+            var answer = questionElement.querySelector(
+              'input[type="radio"]:checked'
+            );
+            if (answer) {
+              var answerIndex = answer.value;
+              var answerText = question.answers[answerIndex];
+              if (answerText == question.correctAnswer) {
+                answer.parentElement.parentElement.style.borderColor =
+                  "limegreen";
+                // alert("Correct!");
+                correct++;
+                updateScore();
+              } else {
+                answer.parentElement.parentElement.style.borderColor = "red";
+                // alert("Incorrect!");
+              }
+            } else {
+              alert("Please select an answer.");
+            }
+          });
+
+          // add button
+          questionElement.appendChild(submitButton);
+
+          questionsContainer.appendChild(questionElement);
+        }
+      }
+
+      function select(question, answer) {
+        var questionElement = document.getElementById(question);
+        var answers = questionElement.getElementsByClassName("answer");
+        for (var i = 0; i < answers.length; i++) {
+          var span = answers[i].children[0].children[0].children[0];
+          var input = answers[i].children[0].children[0].children[1];
+          span.classList.remove("selected");
+          input.checked = false;
+        }
+        var span = answers[answer].children[0].children[0].children[0];
+        var input = answers[answer].children[0].children[0].children[1];
+        span.classList.add("selected");
+        input.checked = true;
+      }
+
+      function updateScore() {
+        var scoreElem = document.getElementById("score");
+        const score = (correct / total) * 100;
+        scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+      }
+    </script>
+  </body>
+</html>

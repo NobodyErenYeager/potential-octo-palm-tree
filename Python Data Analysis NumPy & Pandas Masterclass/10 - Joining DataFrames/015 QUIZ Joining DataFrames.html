@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      ul,
+      ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      code {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .quiz-content {
+        padding: 2.4rem;
+        word-break: break-word;
+        max-width: 86rem;
+        margin: 0 auto;
+      }
+      .quiz-container {
+        margin: 0 auto;
+        max-width: 84rem;
+        padding: 0;
+      }
+      .question {
+        margin-bottom: 5rem;
+      }
+      .question span {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .question-prompt {
+        margin-top: 0.8rem;
+        font-weight: 700;
+      }
+      .question-answer {
+        margin-top: 1.6rem;
+        padding-left: 0;
+        box-sizing: border-box;
+      }
+      .question-answer label {
+        max-width: 80rem;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        min-width: 18rem;
+        border: solid #1c1d1f 2px;
+      }
+      .question-answer div {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        width: 100%;
+      }
+      .question-answer div:hover {
+        background-color: #f5f5f5;
+      }
+      .question-answer input {
+        display: none;
+      }
+      .question-answer span {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 1.6rem;
+        top: 0;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+        border: 0.2rem solid #1c1d1f;
+        position: relative;
+      }
+      .selected {
+        background: #1c1d1f;
+        box-shadow: 0 0 0 0.4rem #fff inset;
+      }
+      .score {
+              position: fixed;
+            }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <div id="score" class="score">
+      <span>Score: N/A of N/A</span>
+    </div>
+    <div id="quiz-container" class="quiz-content"></div>
+
+    <script>
+      const quizData = {"pass_percent": 70, "questions": [{"_class": "assessment", "id": 49355826, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which function stacks two DataFrames on top of each other?</p>", "relatedLectureIds": ["33233952"], "feedbacks": ["The concat method appends, or concatenates two dataframes and stacks them on top of each other.", "", "", ""], "answers": ["<p>pd.concat()</p>", "<p>pd.stack()</p>", "<p>pd.join()</p>", "<p>pd.join()</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "Which function stacks two DataFrames on top of each other?", "related_lectures": [{"_class": "lecture", "id": 33233952, "title": "Appending DataFrames", "created": "2022-07-25T13:02:40Z", "is_published": true, "asset": {"_class": "asset", "id": 42866492, "asset_type": "Video", "title": "S9L2_Appending_DataFrames_V2.mp4", "created": "2022-08-03T21:12:10Z"}, "object_index": 203, "url": "/course/python-pandas/learn/lecture/33233952"}]}, {"_class": "assessment", "id": 49355830, "assessment_type": "multiple-choice", "prompt": {"question": "<p>If a DataFrame with 5 columns is appended to a DataFrame with 6 columns, and 5 columns are shared between the two, how many columns will be returned in the DataFrame returned calling concat() on both DataFrames?</p>", "relatedLectureIds": ["33233952"], "feedbacks": ["", "", "While it's not recommended in most cases, two DataFrames with differing column counts can be appended via concat(). NaN values will be filled in for the rows in the column coming from the DataFrame with fewer columns.", ""], "answers": ["<p>1</p>", "<p>5</p>", "<p>6</p>", "<p>No DataFrame will be returned.</p>"]}, "correct_response": ["c"], "section": "", "question_plain": "If a DataFrame with 5 columns is appended to a DataFrame with 6 columns, and 5 columns are shared between the two, how many columns will be returned in the DataFrame returned calling concat() on both DataFrames?", "related_lectures": [{"_class": "lecture", "id": 33233952, "title": "Appending DataFrames", "created": "2022-07-25T13:02:40Z", "is_published": true, "asset": {"_class": "asset", "id": 42866492, "asset_type": "Video", "title": "S9L2_Appending_DataFrames_V2.mp4", "created": "2022-08-03T21:12:10Z"}, "object_index": 203, "url": "/course/python-pandas/learn/lecture/33233952"}]}, {"_class": "assessment", "id": 49355872, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is the difference between a left join and inner join?</p>", "relatedLectureIds": ["33233968"], "feedbacks": ["Left joins join to the right table on matches, but if no matches are found, the row remains in the table.", "", "", ""], "answers": ["<p>A left join will always preserve the number of rows in the left table, while an inner join can reduce the number of rows.</p>", "<p>An inner join will always preserve the number of rows in the left table, while a left join can reduce the number of rows.</p>", "<p>An inner join can only be used for joining a table to itself.</p>", "<p>There is no difference, but we should always use inner join.</p>"]}, "correct_response": ["a"], "section": "", "question_plain": "What is the difference between a left join and inner join?", "related_lectures": [{"_class": "lecture", "id": 33233968, "title": "Join Types", "created": "2022-07-25T13:03:25Z", "is_published": true, "asset": {"_class": "asset", "id": 42866484, "asset_type": "Video", "title": "s9L6_Join_Types_V2.mp4", "created": "2022-08-03T21:10:55Z"}, "object_index": 207, "url": "/course/python-pandas/learn/lecture/33233968"}]}, {"_class": "assessment", "id": 49355956, "assessment_type": "multiple-choice", "prompt": {"question": "<p>How many rows result from the following join?</p><img src=\"https://img-c.udemycdn.com/redactor/raw/quiz_question/2022-07-26_01-40-48-daba94f327bf1d4b5e97c23fc34c7075.png\">", "relatedLectureIds": ["33233968"], "feedbacks": ["", "", "", "A left join will preserve all rows in the left table, so 5 rows are returned, even though there is only one match between the join column."], "answers": ["<p>0</p>", "<p>1</p>", "<p>3</p>", "<p>5</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "How many rows result from the following join?", "related_lectures": [{"_class": "lecture", "id": 33233968, "title": "Join Types", "created": "2022-07-25T13:03:25Z", "is_published": true, "asset": {"_class": "asset", "id": 42866484, "asset_type": "Video", "title": "s9L6_Join_Types_V2.mp4", "created": "2022-08-03T21:10:55Z"}, "object_index": 207, "url": "/course/python-pandas/learn/lecture/33233968"}]}, {"_class": "assessment", "id": 49355958, "assessment_type": "multiple-choice", "prompt": {"question": "<p>Which of the following is not a join type?</p>", "relatedLectureIds": ["33233968"], "feedbacks": ["", "", "", "All of the listed are valid join types."], "answers": ["<p>Inner</p>", "<p>Outer</p>", "<p>Left</p>", "<p>None of the above</p>"]}, "correct_response": ["d"], "section": "", "question_plain": "Which of the following is not a join type?", "related_lectures": [{"_class": "lecture", "id": 33233968, "title": "Join Types", "created": "2022-07-25T13:03:25Z", "is_published": true, "asset": {"_class": "asset", "id": 42866484, "asset_type": "Video", "title": "s9L6_Join_Types_V2.mp4", "created": "2022-08-03T21:10:55Z"}, "object_index": 207, "url": "/course/python-pandas/learn/lecture/33233968"}]}, {"_class": "assessment", "id": 49355964, "assessment_type": "multiple-choice", "prompt": {"question": "<p>What is the difference between .join() and .merge()?</p>", "relatedLectureIds": ["33233980"], "feedbacks": ["", "The merge method is the preferred method for joining tables. Not only does it join on both columns and indices, join will soon be deprecated.", "", ""], "answers": ["<p>Join can join on columns and indices, while merge only joins on indices.</p>", "<p>Merge can join on indices or columns, while join only joins on indices.</p>", "<p>Join joins DataFrames on the index, while merge joins DataFrames on their columns.</p>", "<p>These are redundant methods, there is no difference other than name.</p>"]}, "correct_response": ["b"], "section": "", "question_plain": "What is the difference between .join() and .merge()?", "related_lectures": [{"_class": "lecture", "id": 33233980, "title": "The Join Method", "created": "2022-07-25T13:03:55Z", "is_published": true, "asset": {"_class": "asset", "id": 42866488, "asset_type": "Video", "title": "S9L11_The_Join_Method_V2.mp4", "created": "2022-08-03T21:11:09Z"}, "object_index": 212, "url": "/course/python-pandas/learn/lecture/33233980"}]}]};
+      var correct = 0;
+      var total = 0;
+      const questionData = quizData.questions
+      const passPercent = quizData.pass_percent
+
+      function main() {
+        total = questionData.length;
+
+        var questions = [];
+        for (var i = 0; i < questionData.length; i++) {
+          var question = questionData[i];
+          var questionText = question.prompt.question;
+          var answers = question.prompt.answers;
+          var correctAnswer = question.correct_response[0];
+          var correctAnswerText = answers[correctAnswer.charCodeAt(0) - 97];
+          var questionObj = {
+            question: questionText,
+            correctAnswer: correctAnswerText,
+            answers: answers,
+            id: question.id,
+          };
+          questions.push(questionObj);
+        }
+
+        updateScore();
+
+        // display the questions
+        var questionsContainer = document.getElementById("quiz-container");
+        for (var i = 0; i < questions.length; i++) {
+          var question = questions[i];
+          var questionElement = document.createElement("form");
+          questionElement.className = "question";
+          questionElement.innerHTML =
+            "<span>Question " +
+            (i + 1) +
+            ":</span>" +
+            '<div class="question-prompt">' +
+            question.question +
+            "</div>";
+          questionElement.id = question.id;
+          questionElement.classList.add("quiz-container");
+          var answersElement = document.createElement("ul");
+          answersElement.className = "answers";
+          for (var j = 0; j < question.answers.length; j++) {
+            var answer = question.answers[j];
+            var answerElement = document.createElement("li");
+            answerElement.className = "answer";
+            answerElement.innerHTML =
+              '<label for="input-' +
+              question.id +
+              "-" +
+              j +
+              '"><div onclick="select(' +
+              question.id +
+              ", " +
+              j +
+              ')"><span></span><input id="input-' +
+              question.id +
+              "-" +
+              j +
+              '" type="radio" name="question' +
+              i +
+              '" value="' +
+              j +
+              '">' +
+              answer +
+              "</input></div></label>";
+            answerElement.classList.add("question-answer");
+            answersElement.appendChild(answerElement);
+          }
+
+          questionElement.appendChild(answersElement);
+
+          // add a submit button
+          var submitButton = document.createElement("button");
+          submitButton.className = "submit";
+          submitButton.innerHTML = "Submit";
+          submitButton.classList.add("submit-button");
+
+          submitButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            var questionElement = e.target.parentElement;
+            var questionId = questionElement.id;
+            var question = questions.filter(function (q) {
+              return q.id == questionId;
+            })[0];
+
+            // set the border color of all answers to black
+            var answers = questionElement.getElementsByClassName("answer");
+            for (var i = 0; i < answers.length; i++) {
+              console.log(answers[i]);
+              answers[i].children[0].style.borderColor = "#1c1d1f";
+            }
+
+            var answer = questionElement.querySelector(
+              'input[type="radio"]:checked'
+            );
+            if (answer) {
+              var answerIndex = answer.value;
+              var answerText = question.answers[answerIndex];
+              if (answerText == question.correctAnswer) {
+                answer.parentElement.parentElement.style.borderColor =
+                  "limegreen";
+                // alert("Correct!");
+                correct++;
+                updateScore();
+              } else {
+                answer.parentElement.parentElement.style.borderColor = "red";
+                // alert("Incorrect!");
+              }
+            } else {
+              alert("Please select an answer.");
+            }
+          });
+
+          // add button
+          questionElement.appendChild(submitButton);
+
+          questionsContainer.appendChild(questionElement);
+        }
+      }
+
+      function select(question, answer) {
+        var questionElement = document.getElementById(question);
+        var answers = questionElement.getElementsByClassName("answer");
+        for (var i = 0; i < answers.length; i++) {
+          var span = answers[i].children[0].children[0].children[0];
+          var input = answers[i].children[0].children[0].children[1];
+          span.classList.remove("selected");
+          input.checked = false;
+        }
+        var span = answers[answer].children[0].children[0].children[0];
+        var input = answers[answer].children[0].children[0].children[1];
+        span.classList.add("selected");
+        input.checked = true;
+      }
+
+      function updateScore() {
+        var scoreElem = document.getElementById("score");
+        const score = (correct / total) * 100;
+        scoreElem.innerHTML = "Score: " + score + "/" + passPercent + "%";
+      }
+    </script>
+  </body>
+</html>

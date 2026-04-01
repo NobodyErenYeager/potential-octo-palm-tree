@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assignment</title>
+
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-weight: 400;
+        line-height: 22.4px;
+        font-size: 16px;
+      }
+      p, ul, ol {
+        font-size: 16px;
+        font-weight: 400;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+      }
+      .code-snippet {
+        background-color: #fff;
+        border: 1px solid #d1d7dc;
+        color: #b4690e;
+        font-size: 90%;
+        padding: 0.2rem 0.4rem;
+      }
+      .code-block {
+        background-color: #fff;
+        color: #b4690e;
+        font-size: 90%;
+      }
+      .black-block {
+        color: #000000;
+      }
+      .italic-text {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body onload="main()">
+    <h1 id="coding-title"></h1>
+    <div>
+      <h2>Instructions</h2>
+      <div id="coding-instructions"></div>
+    </div>
+    <div>
+      <h2>Test(s)</h2>
+      <div id="coding-tests"></div>
+    </div>
+    <div>
+      <h2>Solution(s)</h2>
+      <div id="coding-solutions"></div>
+    </div>
+
+    <script>
+      const quizData = {"title": "019 DIFF()", "hasInstructions": true, "hasTests": true, "hasSolutions": true, "instructions": "<ol><li><p><strong>Load the Dataset</strong>: Start by loading the 'cryptocurrency_BTC.csv' file, ensuring that dates are parsed correctly.</p></li><li><p><strong>Calculate Daily Changes</strong>: Use the <strong>assign</strong> method to add a new column to your DataFrame that represents the daily percentage change in 'Close' prices. This change is calculated by taking the difference of 'Close' prices between consecutive days, divided by the 'Close' price of the previous day, then multiplied by 100 to convert it into a percentage.</p></li><li><p><strong>Review the Results</strong>: Check the 'daily_change_pct' column to analyse the percentage change in 'Close' prices from the previous day.</p></li></ol>", "tests": [{"file_name": "evaluate.py", "content": "import unittest\r\nimport pandas as pd\r\nimport numpy as np\r\n\r\nclass TestDiffMethod(unittest.TestCase):\r\n    def test_daily_change_pct(self):\r\n        data = {\r\n            'Close': [19785, 23337, 20050, 19432, 20496, 17169, 16547, 23139, 23147, 28478,\r\n                      29269, 27220, 30477, 29230, 25931, 26968, 34668, 37713, 42265, 42583,\r\n                      61198, 71334, 60637, 62335]\r\n        }\r\n        df = pd.DataFrame(data)\r\n        df['daily_change_pct'] = df['Close'].diff() / df['Close'].shift() * 100\r\n\r\n        # Expected results\r\n        expected_results = [None, 17.9541, -14.0856, -3.0822, 5.4755, -16.2336, -3.6175, 39.8356, \r\n                            0.0349, 23.0313, 2.7752, -7.0011, 11.9678, -4.0920, -11.2851, 3.9969, \r\n                            28.5519, 8.7833, 12.0714, 0.7510, 43.7169, 16.5613, -14.9954, 2.8002]\r\n\r\n        # Convert expected results to Series for direct comparison\r\n        expected_series = pd.Series(expected_results, name='daily_change_pct')\r\n\r\n        # Check each value with an allowance for small floating-point precision issues\r\n        for calc, exp in zip(df['daily_change_pct'], expected_series):\r\n            if exp is None or np.isnan(exp):\r\n                self.assertTrue(np.isnan(calc), f\"Expected NaN, got {calc}\")\r\n            else:\r\n                self.assertAlmostEqual(calc, exp, delta=0.01, msg=f\"Expected {exp}, got {calc}\")\r\n\r\n# Run the tests\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"}], "solutions": [{"file_name": "exercise.py", "content": "import pandas as pd\r\n\r\n# Load the dataset\r\ncrypto = pd.read_csv(\"cryptocurrency_BTC.csv\", parse_dates=['Date'])\r\n\r\n# Calculate the daily change in 'Close' prices using the assign method\r\ncrypto.assign(daily_change_pct=crypto['Close'].diff() / crypto['Close'].shift() * 100)\r\n\r\n# Display the DataFrame with the new 'daily_change_pct' column\r\nprint(crypto)\r\n"}, {"file_name": "cryptocurrency_BTC.csv", "content": "Date\t  Ticker  Open\t\t  High       Low        Close     Adj Close\t     Volume                   \r\n01/06/2022\tBTC\t 31,793 \t 31,957 \t 17,709 \t 19,785 \t 19,785 \t 923,939,211,678 \r\n01/07/2022\tBTC\t 19,820 \t 24,573 \t 18,967 \t 23,337 \t 23,337 \t 927,582,363,389 \r\n01/08/2022\tBTC\t 23,337 \t 25,136 \t 19,601 \t 20,050 \t 20,050 \t 894,192,654,543 \r\n01/09/2022\tBTC\t 20,050 \t 22,674 \t 18,290 \t 19,432 \t 19,432 \t 1,123,272,250,385 \r\n01/10/2022\tBTC\t 19,431 \t 20,988 \t 18,320 \t 20,496 \t 20,496 \t 957,903,424,925 \r\n01/11/2022\tBTC\t 20,495 \t 21,447 \t 15,599 \t 17,169 \t 17,169 \t 1,224,531,549,126 \r\n01/12/2022\tBTC\t 17,168 \t 18,319 \t 16,398 \t 16,547 \t 16,547 \t 541,356,716,034 \r\n01/01/2023\tBTC\t 16,548 \t 23,920 \t 16,521 \t 23,139 \t 23,139 \t 690,994,018,045 \r\n01/02/2023\tBTC\t 23,138 \t 25,134 \t 21,460 \t 23,147 \t 23,147 \t 723,968,574,897 \r\n01/03/2023\tBTC\t 23,151 \t 29,160 \t 19,628 \t 28,478 \t 28,478 \t 883,299,703,608 \r\n01/04/2023\tBTC\t 28,473 \t 31,006 \t 27,071 \t 29,269 \t 29,269 \t 511,540,319,004 \r\n01/05/2023\tBTC\t 29,227 \t 29,820 \t 25,878 \t 27,220 \t 27,220 \t 443,473,015,479 \r\n01/06/2023\tBTC\t 27,218 \t 31,390 \t 24,797 \t 30,477 \t 30,477 \t 481,734,214,225 \r\n01/07/2023\tBTC\t 30,472 \t 31,815 \t 28,934 \t 29,230 \t 29,230 \t 382,224,489,090 \r\n01/08/2023\tBTC\t 29,231 \t 30,177 \t 25,409 \t 25,931 \t 25,931 \t 437,724,169,499 \r\n01/09/2023\tBTC\t 25,934 \t 27,489 \t 24,930 \t 26,968 \t 26,968 \t 337,637,313,742 \r\n01/10/2023\tBTC\t 26,967 \t 35,150 \t 26,558 \t 34,668 \t 34,668 \t 476,425,634,860 \r\n01/11/2023\tBTC\t 34,657 \t 38,415 \t 34,133 \t 37,713 \t 37,713 \t 570,863,267,380 \r\n01/12/2023\tBTC\t 37,718 \t 44,706 \t 37,629 \t 42,265 \t 42,265 \t 721,704,910,480 \r\n01/01/2024\tBTC\t 42,280 \t 48,969 \t 38,522 \t 42,583 \t 42,583 \t 825,918,941,347 \r\n01/02/2024\tBTC\t 42,570 \t 63,913 \t 41,879 \t 61,198 \t 61,198 \t 830,721,862,621 \r\n01/03/2024\tBTC\t 61,168 \t 73,750 \t 59,324 \t 71,334 \t 71,334 \t 1,446,417,844,950 \r\n01/04/2024\tBTC\t 71,333 \t 72,715 \t 59,120 \t 60,637 \t 60,637 \t 1,016,068,331,704 \r\n01/05/2024\tBTC\t 60,609 \t 65,495 \t 56,555 \t 62,335 \t 62,335 \t 207,868,919,354 "}]};
+
+      function renderCodeList(rootElement, codeList, className, titlePrefix) {
+        for (var i = 0; i < codeList.length; i++) {
+          var elem = codeList[i];
+          var jsElem = document.createElement("div");
+          jsElem.className = className;
+          var jsElemTitle = document.createElement("h3");
+          jsElemTitle.innerHTML = titlePrefix + " " + (i + 1);
+          var jsElemBody = document.createElement("code");
+          jsElemBody.className = "code-block black-block";
+          jsElemBody.innerHTML = "<pre>" + elem.content + "</pre>";
+          jsElem.appendChild(jsElemTitle);
+          jsElem.appendChild(jsElemBody);
+          rootElement.appendChild(jsElem);
+        }
+      }
+      
+      function main() {
+        // display the assignment
+        var codingTitle = document.getElementById("coding-title");
+        codingTitle.innerHTML = quizData.title;
+        
+        var codingInstructions = document.getElementById("coding-instructions");
+        if (quizData.hasInstructions) {
+          codingInstructions.innerHTML = quizData.instructions;
+        } else {
+          codingInstructions.innerHTML = "<span class=\"italic-text\">" + quizData.instructions
+            + "</span>";
+        }
+
+        // display the test(s)
+        var codingTests = document.getElementById("coding-tests");
+        if (!quizData.hasTests) {
+          codingTests.innerHTML = "<span class=\"italic-text\">" + quizData.tests + "</span>";
+        } else {
+          renderCodeList(codingTests, quizData.tests, "coding-test", "Test");
+        }
+        
+
+        // display the solution(s)
+        var codingSolutions = document.getElementById("coding-solutions");
+        if (!quizData.hasSolutions) {
+          codingSolutions.innerHTML = "<span class=\"italic-text\">" + quizData.solutions + "</span>";
+        } else {
+          renderCodeList(codingSolutions, quizData.solutions, "coding-solution", "Solution");
+        }
+      }
+    </script>
+  </body>
+</html>
